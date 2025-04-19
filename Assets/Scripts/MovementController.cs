@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Compression;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -14,7 +15,6 @@ public class MovementController : MonoBehaviour
     //Movement
     [Header("Movement")]
     [Tooltip("Units moved per second at maximum speed.")]
-    // public float movementVelocity.y = 0f;
     public float movespeed = 24;
     [Tooltip("Time, in seconds, to reach maximum speed.")]
     public float timeToMaxSpeed = 0.26f;
@@ -41,9 +41,13 @@ public class MovementController : MonoBehaviour
     public float reverseMomentumMultiplier = 2.2f;
     private Vector3 movementVelocity = Vector3.zero;
 
+    [Header("Mouse look")]
+    public float mouseSensitivity = 10.0f;
+
     private void Movement()
     {
 
+        // Vertical movement (Y axis)
         if (Input.GetKey(KeyCode.Space))
         {
             // If we are already moving up
@@ -68,7 +72,7 @@ public class MovementController : MonoBehaviour
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime);
 
         }
-
+        // Forward and backward movement (Z axis)
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (movementVelocity.z >= 0) // If we are already moving forward
@@ -98,7 +102,7 @@ public class MovementController : MonoBehaviour
                 movementVelocity.z = Mathf.Min(0, movementVelocity.z + VelocityGainPerSecond * Time.deltaTime);
         }
 
-        // If D or the right arrow key is held:
+        // Lateral movement (X axis)
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // If we are already moving right
@@ -131,12 +135,14 @@ public class MovementController : MonoBehaviour
                 movementVelocity.x = Mathf.Min(0, movementVelocity.x + VelocityLossPerSecond * Time.deltaTime);
         }
         
+        // Applying movement and rotation to game object.
         if (movementVelocity.x != 0 || movementVelocity.z != 0 || movementVelocity.y != 0)
         {
             // applying the movement velocity
-            characterController.Move(movementVelocity * Time.deltaTime);
+            Vector3 relativeMovement = trans.right * movementVelocity.x + trans.forward * movementVelocity.z;
+            Vector3 fullVelocity = relativeMovement + Vector3.up * movementVelocity.y;
+            characterController.Move(fullVelocity * Time.deltaTime);
             // Keeping the model holder rotated towards the last movement direction
-            // modelTrans.rotation = Quaternion.Slerp(modelTrans.rotation, Quaternion.LookRotation(new Vector3(movementVelocity.y, 0, movementVelocity.x)), 0.18F);
             // Now we calculate the rotation according to the pressed keys
             float tiltX = 0f;
             float tiltZ = 0f;
@@ -154,8 +160,21 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    private void MouseMovement()
+    {
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        trans.Rotate(Vector3.up * mouseX);
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;   
+    }
+
     private void Update()
     {
         Movement();
+        MouseMovement();
     }
 }
