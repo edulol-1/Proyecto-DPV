@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO.Compression;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
