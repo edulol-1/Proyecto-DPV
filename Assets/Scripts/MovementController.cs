@@ -43,7 +43,7 @@ public class MovementController : MonoBehaviour
     {
 
         // Vertical movement (Y axis)
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.V))
         {
             // If we are already moving up
             if (movementVelocity.y >= 0)
@@ -51,7 +51,7 @@ public class MovementController : MonoBehaviour
             else
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKey(KeyCode.C))
         {
             // If we are already moving up
             if (movementVelocity.y > 0)
