@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
     [Header("References")]
     public Transform trans;
     public Transform modelTrans;
+    public Transform weaponHolderTrans;
     public CharacterController characterController;
     //Movement
     [Header("Movement")]
@@ -38,6 +39,8 @@ public class MovementController : MonoBehaviour
 
     [Header("Mouse look")]
     public float mouseSensitivity = 10.0f;
+    public Transform cameraHolder;
+    private float verticalLookRotation = 0f;
 
     private void Movement()
     {
@@ -134,7 +137,9 @@ public class MovementController : MonoBehaviour
         if (movementVelocity.x != 0 || movementVelocity.z != 0 || movementVelocity.y != 0)
         {
             // applying the movement velocity
-            Vector3 relativeMovement = trans.right * movementVelocity.x + trans.forward * movementVelocity.z;
+            Vector3 forwardProj = Vector3.ProjectOnPlane(trans.forward, Vector3.down).normalized;
+            Vector3 lateralProj = Vector3.ProjectOnPlane(trans.right, Vector3.down).normalized;
+            Vector3 relativeMovement = lateralProj * movementVelocity.x + forwardProj * movementVelocity.z;
             Vector3 fullVelocity = relativeMovement + Vector3.up * movementVelocity.y;
             characterController.Move(fullVelocity * Time.deltaTime);
             // Keeping the model holder rotated towards the last movement direction
@@ -150,7 +155,8 @@ public class MovementController : MonoBehaviour
                 tiltZ = 10f;
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 tiltZ = -10f;
-            Quaternion targetRotation = Quaternion.Euler(tiltX, modelTrans.rotation.eulerAngles.y, tiltZ);
+            //Quaternion targetRotation = Quaternion.Euler(tiltX, modelTrans.rotation.eulerAngles.y, tiltZ);
+            Quaternion targetRotation = Quaternion.Euler(tiltX, trans.rotation.eulerAngles.y, tiltZ);
             modelTrans.rotation = Quaternion.Slerp(modelTrans.rotation, targetRotation, 10f * Time.deltaTime);
         }
     }
@@ -159,6 +165,13 @@ public class MovementController : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         trans.Rotate(Vector3.up * mouseX);
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        verticalLookRotation -= mouseY;
+        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -80f, 80f);
+        cameraHolder.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
+        weaponHolderTrans.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
+        //trans.Rotate(Vector3.right * -mouseY);
     }
 
     private void Start()
