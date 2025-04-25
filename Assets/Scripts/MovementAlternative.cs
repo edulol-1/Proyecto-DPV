@@ -11,7 +11,7 @@ public class MovementAlternative : MonoBehaviour
     //Movement
     [Header("Movement")]
     [Tooltip("Units moved per second at maximum speed.")]
-    public float movespeed = 24;
+    public float movespeed = 100f;
     [Tooltip("Time, in seconds, to reach maximum speed.")]
     public float timeToMaxSpeed = 0.26f;
 
@@ -42,7 +42,7 @@ public class MovementAlternative : MonoBehaviour
     public Transform cameraHolder;
     private float lastMouseY;
 
-    private void Movement()
+    private void ArrowKeyMovement()
     {
 
         // Vertical movement (Y axis)
@@ -167,7 +167,7 @@ public class MovementAlternative : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        ArrowKeyMovement();
         MouseMovement();
     }
 }
