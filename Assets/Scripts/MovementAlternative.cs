@@ -139,7 +139,10 @@ public class MovementAlternative : MonoBehaviour
         if (movementVelocity.x != 0 || movementVelocity.z != 0 || movementVelocity.y != 0)
         {
             // applying the movement velocity
-            Vector3 fullVelocity = trans.right * movementVelocity.x + trans.forward * movementVelocity.z + trans.up * movementVelocity.y;
+            float lateralV = movementVelocity.x * 5;
+            float verticalV = movementVelocity.y * 9;
+            float straightV = movementVelocity.z * 9;
+            Vector3 fullVelocity = trans.right * lateralV + trans.forward * straightV + trans.up * verticalV;
             characterController.Move(fullVelocity * Time.deltaTime);
             tiltX = movementVelocity.z * 0.5f;
         }
