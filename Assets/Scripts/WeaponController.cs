@@ -7,11 +7,12 @@ public class WeaponController : MonoBehaviour
     public Transform firePoint;
     public Transform playerTrans;
     public float bulletSpeed;
+    public GameObject pauseMenuUI;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && pauseMenuUI.activeSelf == false)
         {
             Shoot1();
         }

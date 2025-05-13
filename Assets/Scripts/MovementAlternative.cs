@@ -165,7 +165,7 @@ public class MovementAlternative : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;   
+        Cursor.visible = false;
     }
 
     private void Update()
