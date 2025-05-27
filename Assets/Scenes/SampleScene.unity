@@ -2644,7 +2644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528925083}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23babf89e1c956544a62f142996d9cb2, type: 3}
   m_Name: 
@@ -2977,16 +2977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee48b0a877c234f86d019bc5aad083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trans: {fileID: 1607708426}
-  modelTrans: {fileID: 616285741}
-  weaponHolderTrans: {fileID: 1528925084}
-  characterController: {fileID: 1607708425}
-  movespeed: 100
-  timeToMaxSpeed: 0.26
-  timeToLoseMaxSpeed: 0.2
-  reverseMomentumMultiplier: 2.2
-  stickSensitivity: 100
-  cameraHolder: {fileID: 1726257662}
 --- !u!114 &1607708428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3003,11 +2993,11 @@ MonoBehaviour:
   modelTrans: {fileID: 616285741}
   weaponHolderTrans: {fileID: 1528925084}
   characterController: {fileID: 1607708425}
-  movespeed: 24
+  movespeed: 10
   timeToMaxSpeed: 0.26
   timeToLoseMaxSpeed: 0.2
   reverseMomentumMultiplier: 2.2
-  mouseSensitivity: 10
+  mouseSensitivity: 0.5
   cameraHolder: {fileID: 1726257662}
 --- !u!1 &1620125558
 GameObject:
