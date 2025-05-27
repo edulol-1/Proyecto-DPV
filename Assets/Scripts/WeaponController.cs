@@ -8,11 +8,13 @@ public class WeaponController : MonoBehaviour
     public Transform playerTrans;
     public float bulletSpeed;
     public GameObject pauseMenuUI;
+    public bool hasWeapon = false;
+    public AudioSource audioSource;
+    public AudioClip shootSound;
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && pauseMenuUI.activeSelf == false)
+        if (Input.GetMouseButtonDown(0) && pauseMenuUI.activeSelf == false && hasWeapon)
         {
             Shoot1();
         }
@@ -20,6 +22,7 @@ public class WeaponController : MonoBehaviour
 
     void Shoot1()
     {
+        audioSource.PlayOneShot(shootSound);
         Vector3 direction = playerTrans.forward.normalized;
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(direction));
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
