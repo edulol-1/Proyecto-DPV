@@ -42,6 +42,11 @@ public class WeaponPickup : MonoBehaviour
 
         // Configurar parent y transformación relativa
         transform.SetParent(holder);
+        WeaponController weaponController = holder.GetComponent<WeaponController>();
+        if (weaponController != null)
+        {
+            weaponController.hasWeapon = true;
+        }
         transform.localPosition = positionOffset;
         transform.localEulerAngles = rotationOffset;
         
