@@ -73,7 +73,7 @@ public class MovementAlternative1 : MonoBehaviour
 
         }
         // Forward and backward movement (Z axis)
-        if (Input.GetButton("Forward"))
+        if (Input.GetAxis("Forward") < -0.3f)
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (movementVelocity.z >= 0) // If we are already moving forward
@@ -83,7 +83,7 @@ public class MovementAlternative1 : MonoBehaviour
                 //Increase Z velocity by VelocityGainPerSecond, using the reverseMomentumMultiplier, but don't raise higher than 0:
                 movementVelocity.z = Mathf.Min(0, movementVelocity.z + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetButton("Backward"))
+        else if (Input.GetAxis("Forward") > 0.3f)
         //else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // If we are already moving forward
@@ -105,7 +105,7 @@ public class MovementAlternative1 : MonoBehaviour
         }
 
         // Lateral movement (X axis)
-        if (Input.GetButton("Rightward"))
+        if (Input.GetAxis("Rightward") > 0.5f)
         //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // If we are already moving right
@@ -117,7 +117,7 @@ public class MovementAlternative1 : MonoBehaviour
                 movementVelocity.x = Mathf.Min(0, movementVelocity.x + VelocityGainPerSecond * reverseMomentumMultiplier * Time.deltaTime);
         }
         // If A or left arrow keys are held:
-        else if (Input.GetButton("Leftward"))
+        else if (Input.GetAxis("Rightward") < -0.5f)
         //else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // If we are already moving right
@@ -164,7 +164,7 @@ public class MovementAlternative1 : MonoBehaviour
         float mouseX = Input.GetAxis("RightStickHorizontal") * mouseSensitivity;
         trans.Rotate(Vector3.up * mouseX);
         float mouseY = Input.GetAxis("RightStickVertical") * mouseSensitivity;
-        trans.Rotate(Vector3.right * -mouseY);
+        trans.Rotate(Vector3.right * mouseY);
         lastMouseY = mouseY;
     }
 
