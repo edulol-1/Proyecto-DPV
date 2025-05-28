@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
     [Tooltip("Ajusta esta posición si el arma no queda bien alineada")]
     public Vector3 positionOffset = Vector3.zero;
-    
+
     [Tooltip("Ajusta esta rotación si el arma no queda bien orientada")]
     public Vector3 rotationOffset = Vector3.zero;
 
@@ -16,7 +14,7 @@ public class WeaponPickup : MonoBehaviour
         {
             // Buscar el punto de sujeción en el jugador
             Transform holder = other.transform.Find("WeaponHolder");
-            
+
             if (holder != null)
             {
                 AttachToHolder(holder);
@@ -42,11 +40,17 @@ public class WeaponPickup : MonoBehaviour
 
         // Configurar parent y transformación relativa
         transform.SetParent(holder);
-        WeaponController weaponController = holder.GetComponent<WeaponController>();
-        if (weaponController != null)
+        if (holder.GetComponent<WeaponController>() != null)
         {
+            WeaponController weaponController = holder.GetComponent<WeaponController>();
             weaponController.hasWeapon = true;
         }
+        else
+        {
+            WeaponController1 weaponController = holder.GetComponent<WeaponController1>();
+            weaponController.hasWeapon = true;
+        }
+
         transform.localPosition = positionOffset;
         transform.localEulerAngles = rotationOffset;
         
