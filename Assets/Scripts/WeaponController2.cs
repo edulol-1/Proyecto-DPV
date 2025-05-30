@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController2 : MonoBehaviour
 {
     public Camera mainCamera;
     public GameObject bulletPrefab;
@@ -12,11 +12,18 @@ public class WeaponController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip shootSound;
 
+    private bool hasFired = false;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && pauseMenuUI.activeSelf == false && hasWeapon)
+        if (Input.GetAxis("FireP2") == 0)
+        {
+            hasFired = false;
+        }
+        if (Input.GetAxis("FireP2") == 1 && pauseMenuUI.activeSelf == false && hasWeapon && !hasFired)
         {
             Shoot();
+            hasFired = true;
         }
     }
 

@@ -2468,6 +2468,7 @@ GameObject:
   - component: {fileID: 1410687458}
   - component: {fileID: 1410687459}
   - component: {fileID: 1410687460}
+  - component: {fileID: 1410687461}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -2541,7 +2542,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410687456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 911fdd9a538eb5a4bb24e1a86424d32d, type: 3}
   m_Name: 
@@ -2555,6 +2556,28 @@ MonoBehaviour:
   timeToLoseMaxSpeed: 0.2
   reverseMomentumMultiplier: 2.2
   mouseSensitivity: 10
+  cameraHolder: {fileID: 1432392675}
+--- !u!114 &1410687461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410687456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c826842ebcd284d45a5835bdfd4f5381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trans: {fileID: 1410687457}
+  modelTrans: {fileID: 1162927419}
+  weaponHolderTrans: {fileID: 1678222390}
+  characterController: {fileID: 1410687458}
+  movespeed: 10
+  timeToMaxSpeed: 0.26
+  timeToLoseMaxSpeed: 0.2
+  reverseMomentumMultiplier: 2.2
+  mouseSensitivity: 0.5
   cameraHolder: {fileID: 1432392675}
 --- !u!1001 &1423140062
 PrefabInstance:
@@ -3256,7 +3279,7 @@ MonoBehaviour:
   timeToMaxSpeed: 0.26
   timeToLoseMaxSpeed: 0.2
   reverseMomentumMultiplier: 2.2
-  mouseSensitivity: 1
+  mouseSensitivity: 0.5
   cameraHolder: {fileID: 1726257662}
 --- !u!1 &1620125558
 GameObject:

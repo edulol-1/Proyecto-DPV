@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MovementAlternative1 : MonoBehaviour
+public class MovementAlternative2 : MonoBehaviour
 {
     //References
     [Header("References")]
@@ -46,7 +46,7 @@ public class MovementAlternative1 : MonoBehaviour
     {
 
         // Vertical movement (Y axis)
-        if (Input.GetButton("Upward1"))
+        if (Input.GetButton("Upward2"))
         //if (Input.GetKey(KeyCode.Space))
         {
             // If we are already moving up
@@ -55,7 +55,7 @@ public class MovementAlternative1 : MonoBehaviour
             else
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetButton("Downward1"))
+        else if (Input.GetButton("Downward2"))
         //else if (Input.GetKey(KeyCode.LeftShift))
         {
             // If we are already moving up
@@ -73,7 +73,7 @@ public class MovementAlternative1 : MonoBehaviour
 
         }
         // Forward and backward movement (Z axis)
-        if (Input.GetAxis("Forward1") < 0.0f)
+        if (Input.GetAxis("Forward2") < -0.3f)
         //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (movementVelocity.z >= 0) // If we are already moving forward
@@ -83,7 +83,7 @@ public class MovementAlternative1 : MonoBehaviour
                 //Increase Z velocity by VelocityGainPerSecond, using the reverseMomentumMultiplier, but don't raise higher than 0:
                 movementVelocity.z = Mathf.Min(0, movementVelocity.z + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetAxis("Forward1") > 0.0f)
+        else if (Input.GetAxis("Forward2") > 0.3f)
         //else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // If we are already moving forward
@@ -105,7 +105,7 @@ public class MovementAlternative1 : MonoBehaviour
         }
 
         // Lateral movement (X axis)
-        if (Input.GetAxis("Rightward1") > 0.0f)
+        if (Input.GetAxis("Rightward2") > 0.5f)
         //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // If we are already moving right
@@ -117,7 +117,7 @@ public class MovementAlternative1 : MonoBehaviour
                 movementVelocity.x = Mathf.Min(0, movementVelocity.x + VelocityGainPerSecond * reverseMomentumMultiplier * Time.deltaTime);
         }
         // If A or left arrow keys are held:
-        else if (Input.GetAxis("Rightward1") < 0.0f)
+        else if (Input.GetAxis("Rightward2") < -0.5f)
         //else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // If we are already moving right
@@ -161,9 +161,9 @@ public class MovementAlternative1 : MonoBehaviour
 
     private void LeftStickMovement()
     {
-        float mouseX = Input.GetAxis("RightStickHorizontal1") * mouseSensitivity;
+        float mouseX = Input.GetAxis("RightStickHorizontal2") * mouseSensitivity;
         trans.Rotate(Vector3.up * mouseX);
-        float mouseY = Input.GetAxis("RightStickVertical1") * mouseSensitivity;
+        float mouseY = Input.GetAxis("RightStickVertical2s") * mouseSensitivity;
         trans.Rotate(Vector3.right * mouseY);
         lastMouseY = mouseY;
     }

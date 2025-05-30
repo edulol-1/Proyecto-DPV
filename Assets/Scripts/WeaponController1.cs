@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeaponController1 : MonoBehaviour
@@ -11,19 +12,18 @@ public class WeaponController1 : MonoBehaviour
     public bool hasWeapon = false;
     public AudioSource audioSource;
     public AudioClip shootSound;
-
     private bool hasFired = false;
 
     void Update()
     {
-        if (Input.GetAxis("FireP2") == 0)
+        if (Input.GetAxis("FireP1") == 0)
         {
             hasFired = false;
         }
-        if (Input.GetAxis("FireP2") == 1 && pauseMenuUI.activeSelf == false && hasWeapon && !hasFired)
+        if (Input.GetAxis("FireP1") == 1 && pauseMenuUI.activeSelf == false && hasWeapon && !hasFired)
         {
             Shoot();
-                hasFired = true;
+            hasFired = true;
         }
     }
 

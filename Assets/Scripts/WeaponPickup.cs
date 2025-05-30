@@ -40,14 +40,14 @@ public class WeaponPickup : MonoBehaviour
 
         // Configurar parent y transformación relativa
         transform.SetParent(holder);
-        if (holder.GetComponent<WeaponController>() != null)
+        if (holder.GetComponent<WeaponController1>() != null)
         {
-            WeaponController weaponController = holder.GetComponent<WeaponController>();
+            WeaponController1 weaponController = holder.GetComponent<WeaponController1>();
             weaponController.hasWeapon = true;
         }
         else
         {
-            WeaponController1 weaponController = holder.GetComponent<WeaponController1>();
+            WeaponController2 weaponController = holder.GetComponent<WeaponController2>();
             weaponController.hasWeapon = true;
         }
 
