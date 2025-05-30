@@ -163,7 +163,7 @@ public class MovementAlternative2 : MonoBehaviour
     {
         float mouseX = Input.GetAxis("RightStickHorizontal2") * mouseSensitivity;
         trans.Rotate(Vector3.up * mouseX);
-        float mouseY = Input.GetAxis("RightStickVertical2s") * mouseSensitivity;
+        float mouseY = Input.GetAxis("RightStickVertical2") * mouseSensitivity;
         trans.Rotate(Vector3.right * mouseY);
         lastMouseY = mouseY;
     }
