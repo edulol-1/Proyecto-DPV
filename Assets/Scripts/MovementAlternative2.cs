@@ -14,6 +14,9 @@ public class MovementAlternative2 : MonoBehaviour
     public float movespeed = 100f;
     [Tooltip("Time, in seconds, to reach maximum speed.")]
     public float timeToMaxSpeed = 0.26f;
+    // Health
+    [Header("Health")]
+    public PlayerHealth healthScript;
 
     private float VelocityGainPerSecond
     { 
@@ -178,5 +181,17 @@ public class MovementAlternative2 : MonoBehaviour
     {
         RightStickMovement();
         LeftStickMovement();
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (healthScript != null)
+            {
+                healthScript.TakeDamage(10);
+            }
+            else
+            {
+                Debug.LogWarning("HealthScript reference is missing!");
+            }
+        }    
     }
 }
