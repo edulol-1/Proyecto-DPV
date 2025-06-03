@@ -10,7 +10,7 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
         {
             // Buscar el punto de sujeción en el jugador
             Transform holder = other.transform.Find("WeaponHolder");
