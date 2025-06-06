@@ -18,7 +18,9 @@ public class PlayerHealth : MonoBehaviour
     public Transform[] spawnPoints;
     public float respawnDelay = 2f;
     public int deaths = 0;
-    //public Transform playerTrans;
+
+    public GameObject explosionPrefab;
+    public GameObject ufoModel;
 
 
     private void Start()
@@ -49,18 +51,22 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            //Invoke(nameof(Die), respawnDelay);
             Die();
         }
     }
 
     private void Die()
     {
-        Debug.Log("Player is Dead");
-        gameObject.SetActive(false);
-        Invoke(nameof(Respawn), respawnDelay);
-        if (++deaths == 3)
+        ufoModel.SetActive(false);
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+        if (++deaths < 3)
         {
-            Invoke(nameof(ShowResults), 2);      
+            Invoke(nameof(Respawn), 3);
+        }
+        else
+        {
+            Invoke(nameof(ShowResults), 3);
         }
     }
 
@@ -69,13 +75,12 @@ public class PlayerHealth : MonoBehaviour
         if (spawnPoints.Length > 0)
         {
             int index = Random.Range(0, spawnPoints.Length);
-            //playerTrans.position = spawnPoints[index].position;
             transform.position = spawnPoints[index].position;
         }
 
         currentHealth = maxHealth;
         UpdateHealthUI();
-        gameObject.SetActive(true);
+        ufoModel.SetActive(true);
     }
 
     private void ShowResults()
