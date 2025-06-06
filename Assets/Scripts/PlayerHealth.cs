@@ -51,13 +51,13 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            //Invoke(nameof(Die), respawnDelay);
             Die();
         }
     }
 
     private void Die()
     {
+        currentHealth = 1000;
         ufoModel.SetActive(false);
         Instantiate(explosionPrefab, transform.position, transform.rotation);
         if (++deaths < 3)
@@ -77,7 +77,6 @@ public class PlayerHealth : MonoBehaviour
             int index = Random.Range(0, spawnPoints.Length);
             transform.position = spawnPoints[index].position;
         }
-
         currentHealth = maxHealth;
         UpdateHealthUI();
         ufoModel.SetActive(true);
@@ -85,12 +84,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void ShowResults()
     {
-        string[] results = (gameObject.tag == "Player2")
-        ? new string[] { "Player 1", "Player 2" }
-        : new string[] { "Player 2", "Player 1" };
+        string winner = (gameObject.tag == "Player2") ? "Player 1" : "Player 2";
 
-        Debug.Log(results[0] + " won the game! :)");
-        Debug.Log(results[1] + " lost the game :(");
+        Debug.Log(winner + " won the game! :)");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;

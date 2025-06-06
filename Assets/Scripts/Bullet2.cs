@@ -4,7 +4,7 @@ public class Bullet2 : MonoBehaviour
 {
     public float lifeSpan = 2.0f;
     public float speed = 10f;
-    public int damageAmount = 10;
+    public int damageAmount = 20;
     
     private Rigidbody rb;
 
