@@ -13,11 +13,14 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI Settings")]
     public Slider healthSlider;
     public TextMeshProUGUI healthText; // Cambiado de Text a TextMeshProUGUI
+    public TextMeshProUGUI remainingLivesGUI;
+    public TextMeshProUGUI finalStatusPlayer;
+    public TextMeshProUGUI finalStatusRival;
+    private int remLives = 3;
 
     [Header("Respawn Settings")]
     public Transform[] spawnPoints;
-    public float respawnDelay = 2f;
-    public int deaths = 0;
+    public float respawnDelay = 3f;
 
     public GameObject explosionPrefab;
     public GameObject ufoModel;
@@ -41,6 +44,11 @@ public class PlayerHealth : MonoBehaviour
         {
             healthText.text = $"Health: {currentHealth}/{maxHealth}";
         }
+
+        if (remainingLivesGUI != null)
+        {
+            remainingLivesGUI.text = $"{remLives}";
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -60,13 +68,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = 1000;
         ufoModel.SetActive(false);
         Instantiate(explosionPrefab, transform.position, transform.rotation);
-        if (++deaths < 3)
+        if (--remLives > 0)
         {
-            Invoke(nameof(Respawn), 3);
+            Invoke(nameof(Respawn), respawnDelay);
         }
         else
         {
-            Invoke(nameof(ShowResults), 3);
+            ShowResults();
         }
     }
 
@@ -84,9 +92,13 @@ public class PlayerHealth : MonoBehaviour
 
     private void ShowResults()
     {
-        string winner = (gameObject.tag == "Player2") ? "Player 1" : "Player 2";
+        finalStatusPlayer.text = "You lose";
+        finalStatusRival.text = "You win!";
+        Invoke(nameof(GetBackToMenu), 6);
+    }
 
-        Debug.Log(winner + " won the game! :)");
+    private void GetBackToMenu()
+    {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
