@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
@@ -12,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI Settings")]
     public Slider healthSlider;
-    public TextMeshProUGUI healthText; // Cambiado de Text a TextMeshProUGUI
+    public TextMeshProUGUI healthText;
     public TextMeshProUGUI remainingLivesGUI;
     public TextMeshProUGUI finalStatusPlayer;
     public TextMeshProUGUI finalStatusRival;
@@ -22,13 +21,27 @@ public class PlayerHealth : MonoBehaviour
     public Transform[] spawnPoints;
     public float respawnDelay = 3f;
 
+    [Header("Sound Effects")]
+    public AudioClip explosionSound;
+    public AudioClip damageSound;
+    public float explosionVolume = 1.0f;
+    public float damageVolume = 0.7f;
+
+    private AudioSource audioSource;
+
     public GameObject explosionPrefab;
     public GameObject ufoModel;
-
 
     private void Start()
     {
         currentHealth = maxHealth;
+        
+        if (!TryGetComponent<AudioSource>(out audioSource))
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+        
         UpdateHealthUI();
     }
 
@@ -56,6 +69,11 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthUI();
+        
+        if (currentHealth > 0 && damageSound != null)
+        {
+            audioSource.PlayOneShot(damageSound, damageVolume);
+        }
 
         if (currentHealth <= 0)
         {
@@ -68,6 +86,16 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = 1000;
         ufoModel.SetActive(false);
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+        
+        if (explosionSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(explosionSound, explosionVolume);
+        }
+        else
+        {
+            Debug.LogWarning("Missing explosion sound or AudioSource!");
+        }
+        
         if (--remLives > 0)
         {
             Invoke(nameof(Respawn), respawnDelay);

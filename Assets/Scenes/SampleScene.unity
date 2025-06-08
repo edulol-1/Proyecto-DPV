@@ -3468,6 +3468,10 @@ MonoBehaviour:
   finalStatusRival: {fileID: 347678771}
   spawnPoints: []
   respawnDelay: 2
+  explosionSound: {fileID: 8300000, guid: 0b8d9b22ae9402543a4a63e6d65abdb4, type: 3}
+  damageSound: {fileID: 8300000, guid: 69525c38c838e874a89a44c6914edc11, type: 3}
+  explosionVolume: 1
+  damageVolume: 0.7
   explosionPrefab: {fileID: 2636297201585196128, guid: bb8765d74e98dbc418cf152c8b787f95, type: 3}
   ufoModel: {fileID: 378284522}
 --- !u!135 &1410687463
@@ -4486,6 +4490,10 @@ MonoBehaviour:
   - {fileID: 826062743}
   - {fileID: 212495987}
   respawnDelay: 2
+  explosionSound: {fileID: 0}
+  damageSound: {fileID: 0}
+  explosionVolume: 1
+  damageVolume: 0.7
   explosionPrefab: {fileID: 2636297201585196128, guid: bb8765d74e98dbc418cf152c8b787f95, type: 3}
   ufoModel: {fileID: 1499650067}
 --- !u!135 &1607708430
