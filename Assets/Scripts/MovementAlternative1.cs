@@ -50,7 +50,6 @@ public class MovementAlternative1 : MonoBehaviour
 
         // Vertical movement (Y axis)
         if (Input.GetButton("Upward1"))
-        //if (Input.GetKey(KeyCode.Space))
         {
             // If we are already moving up
             if (movementVelocity.y >= 0)
@@ -59,7 +58,6 @@ public class MovementAlternative1 : MonoBehaviour
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
         else if (Input.GetButton("Downward1"))
-        //else if (Input.GetKey(KeyCode.LeftShift))
         {
             // If we are already moving up
             if (movementVelocity.y > 0)
@@ -77,7 +75,6 @@ public class MovementAlternative1 : MonoBehaviour
         }
         // Forward and backward movement (Z axis)
         if (Input.GetAxis("Forward1") < 0.0f)
-        //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (movementVelocity.z >= 0) // If we are already moving forward
                 movementVelocity.z = Mathf.Min(movespeed, movementVelocity.z + VelocityGainPerSecond*Time.deltaTime);
@@ -87,7 +84,6 @@ public class MovementAlternative1 : MonoBehaviour
                 movementVelocity.z = Mathf.Min(0, movementVelocity.z + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
         else if (Input.GetAxis("Forward1") > 0.0f)
-        //else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // If we are already moving forward
             if (movementVelocity.z > 0)
