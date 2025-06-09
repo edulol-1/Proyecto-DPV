@@ -129,7 +129,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Title");
     }
 }
