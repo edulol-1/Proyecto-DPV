@@ -49,7 +49,7 @@ public class MovementAlternative1 : MonoBehaviour
     {
 
         // Vertical movement (Y axis)
-        if (Input.GetButton("Upward1"))
+        if (Input.GetKey(KeyCode.Joystick1Button5))
         {
             // If we are already moving up
             if (movementVelocity.y >= 0)
@@ -57,7 +57,7 @@ public class MovementAlternative1 : MonoBehaviour
             else
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetButton("Downward1"))
+        else if (Input.GetKey(KeyCode.Joystick1Button4))
         {
             // If we are already moving up
             if (movementVelocity.y > 0)
