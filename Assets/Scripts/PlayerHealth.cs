@@ -108,11 +108,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void Respawn()
     {
-        if (spawnPoints.Length > 0)
-        {
+        //if (spawnPoints.Length > 0)
+        //{
             int index = Random.Range(0, spawnPoints.Length);
             transform.position = spawnPoints[index].position;
-        }
+        //}
         currentHealth = maxHealth;
         UpdateHealthUI();
         ufoModel.SetActive(true);

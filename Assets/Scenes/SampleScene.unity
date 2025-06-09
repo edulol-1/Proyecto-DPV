@@ -3363,6 +3363,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 32ee3a4a0ba913649947d26fd6a83cb0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ee3a4a0ba913649947d26fd6a83cb0, type: 3}
 --- !u!1 &1401170606
@@ -3522,7 +3526,7 @@ MonoBehaviour:
   modelTrans: {fileID: 1162927419}
   weaponHolderTrans: {fileID: 1678222390}
   characterController: {fileID: 1410687458}
-  movespeed: 10
+  movespeed: 5
   timeToMaxSpeed: 0.26
   healthScript: {fileID: 1410687462}
   timeToLoseMaxSpeed: 0.2
@@ -3548,7 +3552,11 @@ MonoBehaviour:
   remainingLivesGUI: {fileID: 1897675788}
   finalStatusPlayer: {fileID: 893859206}
   finalStatusRival: {fileID: 347678771}
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 922697263}
+  - {fileID: 1630672388}
+  - {fileID: 826062743}
+  - {fileID: 212495987}
   respawnDelay: 2
   explosionSound: {fileID: 8300000, guid: 0b8d9b22ae9402543a4a63e6d65abdb4, type: 3}
   damageSound: {fileID: 8300000, guid: 69525c38c838e874a89a44c6914edc11, type: 3}
@@ -4540,7 +4548,7 @@ MonoBehaviour:
   modelTrans: {fileID: 616285741}
   weaponHolderTrans: {fileID: 1528925084}
   characterController: {fileID: 1607708425}
-  movespeed: 10
+  movespeed: 5
   timeToMaxSpeed: 0.26
   healthScript: {fileID: 1607708429}
   timeToLoseMaxSpeed: 0.2
@@ -5756,6 +5764,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94e8b543ccfce214cbe3536377799049, type: 3}
+--- !u!1 &1944444355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: ee6535f71428504449546c25c0673573, type: 3}
+  m_PrefabInstance: {fileID: 1802791642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1944444360
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944444355}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2121908437
 GameObject:
   m_ObjectHideFlags: 0
