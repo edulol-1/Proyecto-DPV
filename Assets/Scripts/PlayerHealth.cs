@@ -115,7 +115,6 @@ public class PlayerHealth : MonoBehaviour
             int index = Random.Range(0, spawnPoints.Length);
             transform.position = spawnPoints[index].position;
             cc.enabled = true;
-            Debug.Log(gameObject.tag + " will spawn in " + transform.position);
         }
 
         currentHealth = maxHealth;
