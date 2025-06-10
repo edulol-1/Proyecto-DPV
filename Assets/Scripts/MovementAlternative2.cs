@@ -14,6 +14,9 @@ public class MovementAlternative2 : MonoBehaviour
     public float movespeed = 100f;
     [Tooltip("Time, in seconds, to reach maximum speed.")]
     public float timeToMaxSpeed = 0.26f;
+    // Health
+    [Header("Health")]
+    public PlayerHealth healthScript;
 
     private float VelocityGainPerSecond
     { 
@@ -46,8 +49,7 @@ public class MovementAlternative2 : MonoBehaviour
     {
 
         // Vertical movement (Y axis)
-        if (Input.GetButton("Upward2"))
-        //if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Joystick2Button5))
         {
             // If we are already moving up
             if (movementVelocity.y >= 0)
@@ -55,8 +57,7 @@ public class MovementAlternative2 : MonoBehaviour
             else
                 movementVelocity.y = Mathf.Min(0, movementVelocity.y + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
-        else if (Input.GetButton("Downward2"))
-        //else if (Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKey(KeyCode.Joystick2Button4))
         {
             // If we are already moving up
             if (movementVelocity.y > 0)
@@ -74,7 +75,6 @@ public class MovementAlternative2 : MonoBehaviour
         }
         // Forward and backward movement (Z axis)
         if (Input.GetAxis("Forward2") < -0.3f)
-        //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             if (movementVelocity.z >= 0) // If we are already moving forward
                 movementVelocity.z = Mathf.Min(movespeed, movementVelocity.z + VelocityGainPerSecond*Time.deltaTime);
@@ -84,7 +84,6 @@ public class MovementAlternative2 : MonoBehaviour
                 movementVelocity.z = Mathf.Min(0, movementVelocity.z + VelocityGainPerSecond * Time.deltaTime * reverseMomentumMultiplier);
         }
         else if (Input.GetAxis("Forward2") > 0.3f)
-        //else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // If we are already moving forward
             if (movementVelocity.z > 0)
@@ -178,5 +177,17 @@ public class MovementAlternative2 : MonoBehaviour
     {
         RightStickMovement();
         LeftStickMovement();
+        
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (healthScript != null)
+            {
+                healthScript.TakeDamage(10);
+            }
+            else
+            {
+                Debug.LogWarning("HealthScript reference is missing!");
+            }
+        }    
     }
 }
